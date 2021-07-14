@@ -1,5 +1,5 @@
 <template>
-    <div class="container position-relative">
+    <div class="container">
         <div class="row" v-if="albums.length>= 10">
             <Album class="albums-col" v-for="(album,index) in albums"
             :key="index" 
@@ -9,7 +9,7 @@
             :year="album.year"
             />
         </div>
-        <div class="caricamento position-absolute top-50 start-50 translate-middle" v-else>LOADING...</div>
+        <div class="caricamento position-absolute top-50 start-50" v-else>LOADING...</div>
     </div>
 </template>
 
@@ -32,13 +32,12 @@ export default {
     .container{
         .row{
             .albums-col{
-            width: calc(100% / 5 - 24px);
+                width: calc(100% / 5 - 24px);
             margin: 12px 12px;
             padding: 24px;
             }
         }
         .caricamento{
-            width: 100%;
             color: $white-text;
             font-weight: bold;
             font-size: 24px;

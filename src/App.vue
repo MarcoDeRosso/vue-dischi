@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <Main :albums="albums"/>
+    <Main class="position-relative" :albums="albums"/>
   </div>
 </template>
 
