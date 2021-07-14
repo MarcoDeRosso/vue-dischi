@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <Album class="albums-col" v-for="(album,index) in albums" 
+    <div class="container position-relative">
+        <div class="row" v-if="albums.length>= 10">
+            <Album class="albums-col" v-for="(album,index) in albums"
             :key="index" 
             :poster="album.poster"
             :title="album.title"
@@ -9,6 +9,7 @@
             :year="album.year"
             />
         </div>
+        <div class="caricamento position-absolute top-50 start-50 translate-middle" v-else>LOADING...</div>
     </div>
 </template>
 
@@ -26,6 +27,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../style/colors.scss";
 
     .container{
         .row{
@@ -34,6 +36,12 @@ export default {
             margin: 12px 12px;
             padding: 24px;
             }
+        }
+        .caricamento{
+            width: 100%;
+            color: $white-text;
+            font-weight: bold;
+            font-size: 24px;
         }
     }
 </style>
