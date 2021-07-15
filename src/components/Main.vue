@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row" v-if="albums.length>= 10">
+        <div class="row" v-if="albums.length>= 1">
             <Album class="albums-col" v-for="(album,index) in albums"
             :key="index" 
             :poster="album.poster"
