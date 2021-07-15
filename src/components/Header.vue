@@ -3,10 +3,8 @@
         <img src="../assets/spotify-logo.png" alt="spotify-logo">
         <select v-model="searchString" name="genre" @change="$emit('search', searchString)" class="me-2">
             <option value="">All</option>
-            <option value="Pop">Pop</option>
-            <option value="Rock">Rock</option>
-            <option value="Jazz">Jazz</option>
-            <option value="Metal">Metal</option>
+            <option v-for="(genre,index) in genreList" :key="index" :value="genre">{{genre}}</option>
+            
         </select>
     </header>
 </template>
@@ -20,7 +18,7 @@ export default {
         }
     },
         props:{
-        albums:Array
+        genreList:Array
     }
 }
 </script>
