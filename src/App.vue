@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header :genreList="genreList" @search="searchAlbum"/>
+    <Header :genreList="genreList" :artistList="artistList" @option="searchAuthor" @search="searchAlbum"/>
     <Main class="position-relative" :albums="inputSearch"/>
   </div>
 </template>
@@ -21,14 +21,17 @@ export default {
     return{
       albums:[],
       inputSearch: [],
-      genreList:[]
+      genreList:[],
+      artistList:[]
     }
   },
   created(){
     axios.get('https://flynn.boolean.careers/exercises/api/array/music').then((result)=>{
       this.albums=result.data.response;
       this.searchAlbum("");
+      this.searchAuthor("");
       this.genreArray();
+      this.artistArray();
     })
   },
    methods: {
@@ -43,7 +46,19 @@ export default {
           this.genreList.push(element.genre)
         }
       })
-    }
+    },
+    searchAuthor(searchArtist) {
+      this.inputSearch = this.albums.filter((element)=>{
+        return element.author.includes(searchArtist);
+      })
+    },
+    artistArray(){
+      this.albums.forEach((element)=>{
+        if(!this.artistList.includes(element.author)){
+          this.artistList.push(element.author)
+        }
+      })
+    },
   }
 }
 </script>

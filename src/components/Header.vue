@@ -1,11 +1,18 @@
 <template>
-    <header class="d-flex justify-content-between py-3">
+    <header class="d-flex justify-content-between align-items-center py-3">
         <img src="../assets/spotify-logo.png" alt="spotify-logo">
-        <select v-model="searchString" name="genre" @change="$emit('search', searchString)" class="me-2">
-            <option value="">All</option>
-            <option v-for="(genre,index) in genreList" :key="index" :value="genre">{{genre}}</option>
-            
-        </select>
+        <div>
+            <label class="mx-2" for="genre">Cerca per genere:</label>
+            <select v-model="searchString" name="genre" @change="$emit('search', searchString)" class="me-2">
+                <option value="">All</option>
+                <option v-for="(genre,index) in genreList" :key="index" :value="genre">{{genre}}</option>
+            </select>
+            <label class="mx-2" for="artist">Cerca per artista:</label>
+            <select v-model="searchArtist" name="name" @change="$emit('option', searchArtist)" class="me-2">
+                <option value="">All</option>
+                <option v-for="(artist,index) in artistList" :key="index" :value="artist">{{artist}}</option>
+            </select>
+        </div>
     </header>
 </template>
 
@@ -14,11 +21,13 @@ export default {
     name:'Header',
         data() {
         return {
-            searchString: ''
+            searchString: '',
+            searchArtist:''
         }
     },
         props:{
-        genreList:Array
+        genreList:Array,
+        artistList:Array
     }
 }
 </script>
@@ -31,6 +40,10 @@ export default {
         margin-bottom: 48px;
         img{
             width: 75px;
+        }
+        label{
+            color: $white-text;
+            font-weight: bold;
         }
     }
 </style>
