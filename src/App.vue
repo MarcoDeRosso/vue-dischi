@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Header :albums="albums" @search="searchAlbum"/>
     <Main class="position-relative" :albums="albums"/>
   </div>
 </template>
@@ -19,13 +19,19 @@ export default {
   },
   data(){
     return{
-      albums:[]
+      albums:[],
+      inputSearch: ''
     }
   },
   created(){
     axios.get('https://flynn.boolean.careers/exercises/api/array/music').then((result)=>{
       this.albums=result.data.response
     })
+  },
+   methods: {
+    searchAlbum(searchString) {
+      this.inputSearch = searchString
+    }
   }
 }
 </script>
